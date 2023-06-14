@@ -1,6 +1,7 @@
 <?php
 
 require_once("./config/connect.php");
+//Getting data from the database
 $goods = mysqli_query($connect, "SELECT * FROM goods");
 $goods = mysqli_fetch_all($goods);
 
@@ -27,7 +28,9 @@ $goods = mysqli_fetch_all($goods);
             <th>⭯</th>
             <th>✖</th>
         </tr>
+
         <?php
+        //Output all data from the database
         foreach ($goods as $item) {
         ?>
             <tr>
@@ -42,7 +45,7 @@ $goods = mysqli_fetch_all($goods);
         }
         ?>
     </table>
-
+    <!-- Form for adding a data -->
     <h2>Create new product</h2>
     <form action="./vendor/create.php" method="POST">
         <p>name</p>
