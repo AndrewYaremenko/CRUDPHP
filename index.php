@@ -1,8 +1,10 @@
 <?php
 
+//Сreating connection
 require_once("./config/connect.php");
+
 //Getting data from the database
-$goods = mysqli_query($connect, "SELECT * FROM goods");
+$goods = mysqli_query($connect, "SELECT * FROM products");
 $goods = mysqli_fetch_all($goods);
 
 ?>
@@ -14,10 +16,22 @@ $goods = mysqli_fetch_all($goods);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <title>Goods</title>
+    <title>Products</title>
 </head>
 
 <body>
+
+    <!-- Form for adding a data -->
+    <h2>Create new product</h2>
+    <form action="./vendor/productCreate.php" method="POST">
+        <p>name</p>
+        <input type="text" name="name" required>
+        <p>descrpiption</p>
+        <textarea name="description" required></textarea>
+        <p>price</p>
+        <input type="number" step="any" name="price" required>
+        <button type="sumbit">Create</button>
+    </form>
 
     <table>
         <tr>
@@ -25,12 +39,13 @@ $goods = mysqli_fetch_all($goods);
             <th>name</th>
             <th>descrpiption</th>
             <th>price</th>
+            <th>✎</th>
             <th>⭯</th>
             <th>✖</th>
         </tr>
 
         <?php
-        //Output all data from the database
+        //Output all data from the table
         foreach ($goods as $item) {
         ?>
             <tr>
@@ -38,24 +53,15 @@ $goods = mysqli_fetch_all($goods);
                 <td><?= $item[1] ?></td>
                 <td><?= $item[2] ?></td>
                 <td><?= $item[3] ?></td>
+                <td><a href="./comments.php?id=<?= $item[0] ?>" class="comments">comments</a></td>
                 <td><a href="./update.php?id=<?= $item[0] ?>">update</a></td>
-                <td><a href="./vendor/delete.php?id=<?= $item[0] ?>">delete</a></td>
+                <td><a href="./vendor/productDelete.php?id=<?= $item[0] ?>" class="delete">delete</a></td>
             </tr>
         <?php
         }
         ?>
     </table>
-    <!-- Form for adding a data -->
-    <h2>Create new product</h2>
-    <form action="./vendor/create.php" method="POST">
-        <p>name</p>
-        <input type="text" name="name">
-        <p>descrpiption</p>
-        <textarea name="description"></textarea>
-        <p>price</p>
-        <input type="number" step="any" name="price">
-        <button type="sumbit">Create</button>
-    </form>
+
 </body>
 
 </html>

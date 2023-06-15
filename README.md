@@ -1,5 +1,6 @@
 # CRUDPHP 
 ##### A simple PHP CRUD application using MySQL to create, read, update and delete records in a database.
+##### The application is built on data management over two tables, related keys and a cascade.
 
 ## Install
 
@@ -19,5 +20,6 @@ $database = "crudphp";
 - Open index.php page
 - DB data will be displayed in the table
 - Under the table there is a form for adding data
-- The table has update button to change the data
-- The table has delete button to delete data
+- The table has update button to change the product
+- The table has comments button to add or delete comments for products
+- The table has delete button to delete products
