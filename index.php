@@ -4,8 +4,8 @@
 require_once("./config/connect.php");
 
 //Getting data from the database
-$goods = mysqli_query($connect, "SELECT * FROM products");
-$goods = mysqli_fetch_all($goods);
+$products = mysqli_query($connect, "SELECT * FROM products");
+$products = mysqli_fetch_all($products);
 
 ?>
 
@@ -46,16 +46,16 @@ $goods = mysqli_fetch_all($goods);
 
         <?php
         //Output all data from the table
-        foreach ($goods as $item) {
+        foreach ($products as $product) {
         ?>
             <tr>
-                <td><?= $item[0] ?></td>
-                <td><?= $item[1] ?></td>
-                <td><?= $item[2] ?></td>
-                <td><?= $item[3] ?></td>
-                <td><a href="./comments.php?id=<?= $item[0] ?>" class="comments">comments</a></td>
-                <td><a href="./update.php?id=<?= $item[0] ?>">update</a></td>
-                <td><a href="./vendor/productDelete.php?id=<?= $item[0] ?>" class="delete">delete</a></td>
+                <td><?= $product[0] ?></td>
+                <td><?= $product[1] ?></td>
+                <td><?= $product[2] ?></td>
+                <td><?= $product[3] ?></td>
+                <td><a href="./comments.php?id=<?= $product[0] ?>" class="comments">comments</a></td>
+                <td><a href="./update.php?id=<?= $product[0] ?>">update</a></td>
+                <td><a href="./vendor/productDelete.php?id=<?= $product[0] ?>" class="delete">delete</a></td>
             </tr>
         <?php
         }

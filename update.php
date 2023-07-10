@@ -3,8 +3,8 @@
 //Сreating connection
 require_once("./config/connect.php");
 
-$good = mysqli_query($connect, "SELECT * FROM products WHERE id={$_GET['id']}");
-$good = mysqli_fetch_assoc($good);
+$product = mysqli_query($connect, "SELECT * FROM products WHERE id={$_GET['id']}");
+$product = mysqli_fetch_assoc($product);
 
 ?>
 
@@ -22,13 +22,13 @@ $good = mysqli_fetch_assoc($good);
 
     <h2>Update product</h2>
     <form action="./vendor/productUpdate.php" method="POST">
-        <input type="hidden" name="id" value="<?= $good['id'] ?>">
+        <input type="hidden" name="id" value="<?= $product['id'] ?>">
         <p>name</p>
-        <input type="text" name="name" value="<?= $good['name'] ?>" required>
+        <input type="text" name="name" value="<?= $product['name'] ?>" required>
         <p>descrpiption</p>
-        <textarea name="description" required><?= $good['description'] ?></textarea>
+        <textarea name="description" required><?= $product['description'] ?></textarea>
         <p>price</p>
-        <input type="number" step="any" name="price" value="<?= $good['price'] ?>" required>
+        <input type="number" step="any" name="price" value="<?= $product['price'] ?>" required>
         <button type="sumbit">Update</button>
     </form>
     <a href="./index.php"><button>Back</button></a>

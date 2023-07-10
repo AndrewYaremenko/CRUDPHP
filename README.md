@@ -2,6 +2,8 @@
 ##### A simple PHP CRUD application using MySQL to create, read, update and delete records in a database.
 ##### The application is built on data management over two tables, related keys and a cascade.
 
+###### The project was created to consolidate knowledge in PHP, connection with the database through the MySQLi module
+
 ## Install
 
 - Clone repository ```git clone https://github.com/Haru-ri/CRUDPHP.git```
@@ -23,3 +25,6 @@ $database = "crudphp";
 - The table has update button to change the product
 - The table has comments button to add or delete comments for products
 - The table has delete button to delete products
+
+### Video presentation 
+[Link to Youtube](https://youtu.be/x2WNPHeKRQY)

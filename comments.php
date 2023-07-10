@@ -3,8 +3,8 @@
 //Сreating connection
 require_once("./config/connect.php");
 
-$good = mysqli_query($connect, "SELECT * FROM products WHERE id={$_GET['id']}");
-$good = mysqli_fetch_assoc($good);
+$product = mysqli_query($connect, "SELECT * FROM products WHERE id={$_GET['id']}");
+$product = mysqli_fetch_assoc($product);
 $comments = mysqli_query($connect, "SELECT id, text FROM comments WHERE product_id={$_GET['id']}");
 $comments = mysqli_fetch_all($comments);
 
@@ -23,15 +23,15 @@ $comments = mysqli_fetch_all($comments);
 <body>
 
     <!-- Output information about product -->
-    <?= $good['name'] ?><br>
-    <?= $good['description'] ?><br>
-    price: <?= $good['price'] ?><br>
+    <?= $product['name'] ?><br>
+    <?= $product['description'] ?><br>
+    price: <?= $product['price'] ?><br>
 
     <!-- Form for adding comment to product -->
     <h2>Add comment</h2>
     <form action="./vendor/commentCreate.php" method="POST">
         <input type="hidden" name='id' value='<?= $_GET['id'] ?>'>
-        <textarea name="comment" required><?= $good['comment'] ?></textarea>
+        <textarea name="comment" required></textarea>
         <button type="sumbit">Comment</button>
     </form>
     <a href="./index.php"><button>Back</button></a>
@@ -41,9 +41,9 @@ $comments = mysqli_fetch_all($comments);
 <ul>
     <?php
     //Output all comments
-    foreach ($comments as $item) {
+    foreach ($comments as $comment) {
     ?>
-        <li><?= $item[1] ?> <a href="./vendor/commentDelete.php?id=<?= $item[0] ?>&good_id=<?= $_GET['id'] ?>" class="delete">✖</a></li>
+        <li><?= $comment[1] ?> <a href="./vendor/commentDelete.php?id=<?= $comment[0] ?>&product_id=<?= $_GET['id'] ?>" class="delete">✖</a></li>
     <?php } ?>
 </ul>
 
